@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "../Container";
-import Image from "next/image";
+
 import Logo from "../Logo/Logo";
 
 

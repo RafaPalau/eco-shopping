@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-footer-dark-green text-neutral-200 text-sm mt-16">
+    <footer className="bg-eco-green text-neutral-200 text-sm mt-16">
       <Container>
         <div className="flex flex-row md:flex-row justify-between pt-16 pb-8">
           <List>

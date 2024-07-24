@@ -9,8 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'navbar-light-orange': '#FFD580',
-        'footer-dark-green': '#2C6E49',
-        'eco-green': '#2C6E49',
+               'eco-green': '#2C6E49',
         'shop-orange': '#FF8C00',
       },
     },
