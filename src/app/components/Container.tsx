@@ -1,5 +1,3 @@
-import { ContainerProps } from "postcss";
-
 interface Props {
   children: React.ReactNode;
 }
@@ -11,7 +9,7 @@ const Container: React.FC<Props> = ({ children }: Props) => {
   max-w-[1920px]
   mx-auto
   x1:px-20
-  md:px-2
+  md:px-20
   px-4
   "
     >

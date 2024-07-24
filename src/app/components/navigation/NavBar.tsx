@@ -12,7 +12,8 @@ const NavBar = () => {
   sticky
   top-0
   w-full
-  bg-green-200
+  bg-navbar-light-orange
+  text-black
   z-30
   shadow-md
   "
