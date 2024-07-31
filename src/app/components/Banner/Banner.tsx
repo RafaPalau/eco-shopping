@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <div className="relative bg-green-100">
+    <div className="relative bg-green-100 mb-6">
       <div className="mx-auto px-8 py-12 flex flex-col gap-2 md:flex-row items-center justify-evenly">
         <div className="mb-6 md:mb-0 text-center">
           <h1 className="font-bold text-green-700 mb-4">Novidade Ecológica</h1>

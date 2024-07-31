@@ -1,11 +1,14 @@
+import { colors } from "@mui/material";
+
 export const products = [
   {
-    id: 1,
+    id: '56541as841scax45c',
     name: "Shampoo Orgânico",
     description: "Shampoo feito com ingredientes naturais e orgânicos.",
     price: 29.99,
     brand: "EcoBeauty",
     category: "Cuidados Pessoais",
+    color: "Green",
     inStock: true,
     images: [
       {
@@ -18,24 +21,26 @@ export const products = [
     ],
   },
   {
-    id: 2,
+    id: '56541ass841cax45c',
     name: "Camiseta de Algodão Orgânico",
     description: "Camiseta confortável feita de algodão 100% orgânico.",
     price: 49.99,
     brand: "GreenWear",
     category: "Moda Sustentável",
     inStock: true,
+    colors: '#008000',
     images: [
       {
-        image: "https://example.com/images/tshirt-white.jpg",
+        image:
+          "https://useorganico.vtexassets.com/arquivos/ids/170505-800-auto?v=638285047144130000&width=800&height=auto&aspect=true",
       },
       {
-        image: "https://example.com/images/tshirt-blue.jpg",
+        image: "https://example.com/images/shampoo-green.jpg",
       },
     ],
   },
   {
-    id: 3,
+    id: '56541ass841cax4asd5c',
     name: "Escova de Dente de Bambu",
     description: "Escova de dente ecológica feita de bambu sustentável.",
     price: 9.99,
@@ -44,7 +49,11 @@ export const products = [
     inStock: false,
     images: [
       {
-        image: "https://example.com/images/bamboo-toothbrush.jpg",
+        image:
+          "https://useorganico.vtexassets.com/arquivos/ids/170505-800-auto?v=638285047144130000&width=800&height=auto&aspect=true",
+      },
+      {
+        image: "https://example.com/images/shampoo-green.jpg",
       },
     ],
   },
@@ -58,10 +67,11 @@ export const products = [
     inStock: true,
     images: [
       {
-        image: "https://example.com/images/reusable-bag-green.jpg",
+        image:
+          "https://useorganico.vtexassets.com/arquivos/ids/170505-800-auto?v=638285047144130000&width=800&height=auto&aspect=true",
       },
       {
-        image: "https://example.com/images/reusable-bag-black.jpg",
+        image: "https://example.com/images/shampoo-green.jpg",
       },
     ],
   },
