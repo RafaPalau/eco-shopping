@@ -2,7 +2,7 @@ import { colors } from "@mui/material";
 
 export const products = [
   {
-    id: '56541as841scax45c',
+    id: "56541as841scax45c",
     name: "Shampoo Orgânico",
     description: "Shampoo feito com ingredientes naturais e orgânicos.",
     price: 29.99,
@@ -21,14 +21,14 @@ export const products = [
     ],
   },
   {
-    id: '56541ass841cax45c',
+    id: "56541ass841cax45c",
     name: "Camiseta de Algodão Orgânico",
     description: "Camiseta confortável feita de algodão 100% orgânico.",
     price: 49.99,
     brand: "GreenWear",
     category: "Moda Sustentável",
     inStock: true,
-    colors: '#008000',
+    colors: "#008000",
     images: [
       {
         image:
@@ -40,7 +40,7 @@ export const products = [
     ],
   },
   {
-    id: '56541ass841cax4asd5c',
+    id: "56541ass841cax4asd5c",
     name: "Escova de Dente de Bambu",
     description: "Escova de dente ecológica feita de bambu sustentável.",
     price: 9.99,
@@ -142,7 +142,8 @@ export const products = [
   {
     id: 8,
     name: "Garrafa de Água Reutilizável",
-    description: "Garrafa de água feita de material reciclado, ideal para uso diário.",
+    description:
+      "Garrafa de água feita de material reciclado, ideal para uso diário.",
     price: 19.99,
     brand: "EcoDrink",
     category: "Utensílios Domésticos",
@@ -156,7 +157,8 @@ export const products = [
   {
     id: 9,
     name: "Papel Higiênico Reciclado",
-    description: "Papel higiênico feito de materiais reciclados, suave e sustentável.",
+    description:
+      "Papel higiênico feito de materiais reciclados, suave e sustentável.",
     price: 4.99,
     brand: "EcoPaper",
     category: "Higiene e Limpeza",
@@ -184,7 +186,8 @@ export const products = [
   {
     id: 11,
     name: "Detergente Ecológico",
-    description: "Detergente biodegradável e ecológico, seguro para o meio ambiente.",
+    description:
+      "Detergente biodegradável e ecológico, seguro para o meio ambiente.",
     price: 6.99,
     brand: "EcoClean",
     category: "Higiene e Limpeza",
@@ -198,7 +201,8 @@ export const products = [
   {
     id: 12,
     name: "Brinquedo para Gatos de Material Reciclado",
-    description: "Brinquedo divertido e sustentável para gatos, feito de material reciclado.",
+    description:
+      "Brinquedo divertido e sustentável para gatos, feito de material reciclado.",
     price: 12.99,
     brand: "EcoPet",
     category: "Produtos para Pets",
@@ -212,7 +216,8 @@ export const products = [
   {
     id: 13,
     name: "Sabonete Natural",
-    description: "Sabonete artesanal feito com ingredientes naturais e sem químicos agressivos.",
+    description:
+      "Sabonete artesanal feito com ingredientes naturais e sem químicos agressivos.",
     price: 7.99,
     brand: "EcoSoap",
     category: "Cuidados Pessoais",
@@ -226,7 +231,8 @@ export const products = [
   {
     id: 14,
     name: "Caderno de Papel Reciclado",
-    description: "Caderno ecológico feito de papel reciclado, ideal para anotações diárias.",
+    description:
+      "Caderno ecológico feito de papel reciclado, ideal para anotações diárias.",
     price: 5.99,
     brand: "EcoNote",
     category: "Material Escolar Sustentável",
@@ -240,7 +246,8 @@ export const products = [
   {
     id: 15,
     name: "Máscara Facial Orgânica",
-    description: "Máscara facial feita com ingredientes orgânicos para um cuidado suave com a pele.",
+    description:
+      "Máscara facial feita com ingredientes orgânicos para um cuidado suave com a pele.",
     price: 14.99,
     brand: "EcoBeauty",
     category: "Cuidados Pessoais",
@@ -254,7 +261,8 @@ export const products = [
   {
     id: 16,
     name: "Toalha de Bambu",
-    description: "Toalha macia e absorvente feita de fibras de bambu sustentável.",
+    description:
+      "Toalha macia e absorvente feita de fibras de bambu sustentável.",
     price: 24.99,
     brand: "EcoHome",
     category: "Casa e Decoração",
@@ -301,4 +309,3 @@ export const products = [
     ],
   },
 ];
-

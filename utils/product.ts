@@ -7,6 +7,7 @@ export const product = {
   brand: "GreenWear",
   category: "Moda Sustentável",
   inStock: true,
+  quantity: 0,
   images: [
     {
       color: "Blue",

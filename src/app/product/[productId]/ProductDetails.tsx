@@ -4,6 +4,7 @@ import { Rating } from "@mui/material";
 import { productRating } from "../../../../utils/format";
 import { useCallback, useState } from "react";
 import SetColor from "@/app/components/Product/SetColor";
+import SetQuantity from "@/app/components/Product/SetQuantity";
 
 interface IProduct {
   product: any;
@@ -38,7 +39,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     inStock: product.inStock,
     color: product.color,
     selectedImage: { ...product.images[0] },
-    quantity: 1,
+    quantity: product.quantity,
     price: product.price,
   });
 
@@ -54,6 +55,32 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [cardProduct.selectedImage]
   );
+
+  console.log(product.quantity);
+
+  const handleQuantityIncrease = useCallback(() => {
+    if (cardProduct.quantity >= 99) return;
+
+    setCartProduct((prev) => {
+      return {
+        ...prev,
+        quantity: prev.quantity + 1,
+      };
+    });
+  }, [cardProduct]);
+
+  console.log(cardProduct.quantity);
+
+  const handleQuantityDecrease = useCallback(() => {
+    if (cardProduct.quantity === 0) return;
+
+    setCartProduct((prev) => {
+      return {
+        ...prev,
+        quantity: prev.quantity - 1,
+      };
+    });
+  }, [cardProduct]);
 
   return (
     <div
@@ -92,13 +119,12 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
           handColorSelect={handleColorSelect}
         />
 
-        {product.quantity && (
-          <div>
-            <hr className="border-slate-200 w-full" />
-            <div>Quantidade: {product.quantity}</div>
-            <hr className="border-slate-200 w-full" />
-          </div>
-        )}
+        <SetQuantity
+          cartProduct={cardProduct}
+          handleQuantityIncrease={handleQuantityIncrease}
+          handleQuantityDecrease={handleQuantityDecrease}
+          cartCounter={product.quantity}
+        />
 
         <div>Adicionar ao carrinho</div>
       </div>
