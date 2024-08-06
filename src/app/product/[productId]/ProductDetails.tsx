@@ -5,6 +5,7 @@ import { productRating } from "../../../../utils/format";
 import { useCallback, useState } from "react";
 import SetColor from "@/app/components/Product/SetColor";
 import SetQuantity from "@/app/components/Product/SetQuantity";
+import Button from "@/app/components/Product/Button";
 
 interface IProduct {
   product: any;
@@ -56,8 +57,6 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     [cardProduct.selectedImage]
   );
 
-  console.log(product.quantity);
-
   const handleQuantityIncrease = useCallback(() => {
     if (cardProduct.quantity >= 99) return;
 
@@ -100,7 +99,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
         </div>
         <hr className="border-slate-200 w-full" />
         <div className="text-justify">{product.description}</div>
-        <hr className="border-slate-200 w-full" />
+        <hr className="border-slate-200 w-full mb-3 mt-3" />
         <div>
           <span className="font-bold">CATEGORIA:</span> {product.category}
         </div>
@@ -110,7 +109,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
         </div>
         <div className={product.inStock ? "text-teal-600" : "text-rose-500"}>
           {product.inStock ? "Disponível" : "Indisponível"}
-          <hr className="border-slate-200 w-full" />
+          <hr className="border-slate-200 w-full mb-3 mt-3" />
         </div>
 
         <SetColor
@@ -126,7 +125,8 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
           cartCounter={product.quantity}
         />
 
-        <div>Adicionar ao carrinho</div>
+        <hr className="border-slate-200 w-full mb-3 mt-3" />
+        <Button small label="Adicionar ao carrinho" onClick={() => {}} />
       </div>
     </div>
   );
