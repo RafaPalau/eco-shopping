@@ -26,19 +26,20 @@ export const product = {
     {
       id: "56541ass841cax45c",
       rating: 4,
-      comment: "Ótima camiseta",
+      createdAt: "2024-08-06T00:00:00.000Z",
+      comment: "Ótima camiseta mas não é tão bonita como o que eu gostaria",
       user: {
-        name: "João",
-        avatar: "https://example.com/avatars/joao.jpg",
+        name: "Rafael Palau",
+        image: "https://avatars.githubusercontent.com/u/45052895?v=4",
       },
     },
     {
       id: "56541ass841cax45c",
       rating: 5,
-      comment: "Ótima camiseta",
+      createdAt: "2024-06-01T00:00:00.000Z",
+      comment: "Ótima camiseta além de confortável",
       user: {
-        name: "Maria",
-        avatar: "https://example.com/avatars/maria.jpg",
+        name: "Rafael",
       },
     },
   ],

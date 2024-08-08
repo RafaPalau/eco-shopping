@@ -8,9 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "navbar-light-orange": "#FFD580",
+        "navbar-light-orange": "#FFDD57",
         "eco-green": "#2C6E49",
         "shop-orange": "#FF8C00",
+        'eco-blue': '#00A6ED',
       },
     },
   },
