@@ -18,7 +18,18 @@ const nextConfig = {
         protocol: "https",
         hostname: "example.com",
         port: "",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "media.istockphoto.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

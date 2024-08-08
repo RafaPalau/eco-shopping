@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 import SetColor from "@/app/components/Product/SetColor";
 import SetQuantity from "@/app/components/Product/SetQuantity";
 import Button from "@/app/components/Product/Button";
+import ProductImage from "@/app/components/Product/ProductImage";
 
 interface IProduct {
   product: any;
@@ -68,8 +69,6 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     });
   }, [cardProduct]);
 
-  console.log(cardProduct.quantity);
-
   const handleQuantityDecrease = useCallback(() => {
     if (cardProduct.quantity === 0) return;
 
@@ -86,7 +85,11 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
       className="grid grid-cols-1 md:grid-cols-2 
     gap-12"
     >
-      <div>Imagens</div>
+      <ProductImage
+        cartProduct={cardProduct}
+        product={product}
+        handleColorSelect={handleColorSelect}
+      />
 
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>

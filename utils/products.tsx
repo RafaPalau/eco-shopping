@@ -16,7 +16,8 @@ export const products = [
           "https://useorganico.vtexassets.com/arquivos/ids/170505-800-auto?v=638285047144130000&width=800&height=auto&aspect=true",
       },
       {
-        image: "https://example.com/images/shampoo-green.jpg",
+        image:
+          "https://useorganico.vtexassets.com/arquivos/ids/170505-800-auto?v=638285047144130000&width=800&height=auto&aspect=true",
       },
     ],
   },
