@@ -35,6 +35,7 @@ const Button: React.FC<Props> = ({
       gap-3
       ${outline ? "bg-white" : "bg-slate-700"}
       ${outline ? "text-sm" : "text-white"}
+      ${outline ? "border-2 border-slate-800" : "border-none"}
       ${small ? "text-sm font-light" : "text-base font-medium"}
       ${small ? "py-1.5 px-3" : "py-2 px-4"}
       `}

@@ -1,13 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Rating } from "@mui/material";
 import { productRating } from "../../../../utils/format";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SetColor from "@/app/components/Product/SetColor";
 import SetQuantity from "@/app/components/Product/SetQuantity";
 import Button from "@/app/components/Product/Button";
 import ProductImage from "@/app/components/Product/ProductImage";
 import { useCart } from "../../../../hooks/useCart";
+import { MdCheckCircle } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 interface IProduct {
   product: any;
@@ -33,7 +36,9 @@ export type selectedImage = {
 };
 
 const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
-  const { cartTotalQuantity } = useCart();
+  const { handleAddProductToCart, cartProductsItems } = useCart();
+  const [isProductInCart, setIsProductInCart] = useState(false);
+
   const [cardProduct, setCartProduct] = useState<CartProduct>({
     id: product.id,
     name: product.name,
@@ -47,6 +52,21 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     price: product.price,
   });
 
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsProductInCart(false);
+
+    if (cartProductsItems) {
+      const existingIndex = cartProductsItems.findIndex(
+        (item) => item.id === product.id
+      );
+
+      if (existingIndex > -1) {
+        setIsProductInCart(true);
+      }
+    }
+  }, [cartProductsItems]);
 
   const handleColorSelect = useCallback(
     (value: selectedImage) => {
@@ -118,21 +138,44 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
           <hr className="border-slate-200 w-full mb-3 mt-3" />
         </div>
 
-        <SetColor
-          cartProduct={product}
-          images={product.images}
-          handColorSelect={handleColorSelect}
-        />
-
-        <SetQuantity
-          cartProduct={cardProduct}
-          handleQuantityIncrease={handleQuantityIncrease}
-          handleQuantityDecrease={handleQuantityDecrease}
-          cartCounter={product.quantity}
-        />
-
-        <hr className="border-slate-200 w-full mb-3 mt-3" />
-        <Button small label="Adicionar ao carrinho" onClick={() => {}} />
+        {isProductInCart ? (
+          <>
+            <p className="mb-3 text-slate-500 flex items-center gap-2">
+              <MdCheckCircle size={30} className="text-teal-400" />
+              <span>Produto adicionado ao carrinho</span>
+            </p>
+            <div className="max-w-sm">
+              <Button
+                label="Ir para carrinho"
+                outline
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            {" "}
+            <SetColor
+              cartProduct={product}
+              images={product.images}
+              handColorSelect={handleColorSelect}
+            />
+            <SetQuantity
+              cartProduct={cardProduct}
+              handleQuantityIncrease={handleQuantityIncrease}
+              handleQuantityDecrease={handleQuantityDecrease}
+              cartCounter={product.quantity}
+            />
+            <hr className="border-slate-200 w-full mb-3 mt-3" />
+            <Button
+              small
+              label="Adicionar ao carrinho"
+              onClick={() => handleAddProductToCart(cardProduct)}
+            />
+          </>
+        )}
       </div>
     </div>
   );
