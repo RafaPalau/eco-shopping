@@ -7,6 +7,7 @@ import SetColor from "@/app/components/Product/SetColor";
 import SetQuantity from "@/app/components/Product/SetQuantity";
 import Button from "@/app/components/Product/Button";
 import ProductImage from "@/app/components/Product/ProductImage";
+import { useCart } from "../../../../hooks/useCart";
 
 interface IProduct {
   product: any;
@@ -32,6 +33,7 @@ export type selectedImage = {
 };
 
 const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
+  const { cartTotalQuantity } = useCart();
   const [cardProduct, setCartProduct] = useState<CartProduct>({
     id: product.id,
     name: product.name,
@@ -44,6 +46,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     quantity: product.quantity,
     price: product.price,
   });
+
 
   const handleColorSelect = useCallback(
     (value: selectedImage) => {
