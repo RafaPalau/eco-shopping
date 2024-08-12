@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 type CartContextType = {
   cartTotalQuantity: number;
   cartProductsItems: CartProduct[] | null;
+  cartTotalAmount: number;
   handleAddProductToCart: (product: CartProduct) => void;
   handleRemoveProductFromCart: (product: CartProduct) => void;
   handleCartQuantityIncrease: (product: CartProduct) => void;
@@ -29,6 +30,7 @@ export const CartContextProvider = (props: Props) => {
   const [cartProductsItems, setCartProductsItems] = useState<
     CartProduct[] | null
   >(null);
+  const [cartTotalAmount, setCartTotalAmount] = useState(0);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("cartProductsItems");
@@ -36,6 +38,32 @@ export const CartContextProvider = (props: Props) => {
 
     setCartProductsItems(cartProducts);
   }, []);
+
+  useEffect(() => {
+    const getTotals = () => {
+      if (cartProductsItems) {
+        const { total, quantity } = cartProductsItems?.reduce(
+          (acc, item) => {
+            const itemTotal = item.price * item.quantity;
+
+            acc.total += itemTotal;
+            acc.quantity += item.quantity;
+
+            return acc;
+          },
+          {
+            total: 0,
+            quantity: 0,
+          }
+        );
+
+        setCartTotalQuantity(quantity);
+        setCartTotalAmount(total);
+      }
+    };
+
+    getTotals();
+  }, [cartProductsItems]);
 
   const handleAddProductToCart = useCallback((product: CartProduct) => {
     setCartProductsItems((prev) => {
@@ -81,6 +109,7 @@ export const CartContextProvider = (props: Props) => {
 
       if (product.quantity === 99) {
         toast.error("Você adicionou o limite de quantidade permitido");
+        return
       }
 
       if (cartProductsItems) {
@@ -150,6 +179,7 @@ export const CartContextProvider = (props: Props) => {
   const value = {
     cartTotalQuantity,
     cartProductsItems,
+    cartTotalAmount,
     handleAddProductToCart,
     handleRemoveProductFromCart,
     handleCartQuantityIncrease,

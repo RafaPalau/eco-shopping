@@ -2,8 +2,7 @@ import Link from "next/link";
 import Container from "../Container";
 
 import Logo from "../Logo/Logo";
-
-
+import CartCount from "./CartCount";
 
 const NavBar = () => {
   return (
@@ -26,7 +25,7 @@ const NavBar = () => {
             </Link>
             <div className="hidden md:block">Procurar</div>
             <div className="flex items-center gap-6">
-              <div>Carrinho</div>
+              <CartCount />
               <div>Perfil</div>
             </div>
           </div>

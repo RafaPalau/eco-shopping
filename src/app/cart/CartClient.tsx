@@ -7,12 +7,12 @@ import Button from "../components/Product/Button";
 import ProductContent from "./ProductContent";
 
 const CartClient = () => {
-  const { cartProductsItems, handleClearCart } = useCart();
+  const { cartProductsItems, handleClearCart , cartTotalAmount} = useCart();
 
   if (!cartProductsItems || cartProductsItems.length === 0) {
     return (
       <div className="flex flex-col items-center">
-        <div className="text-2x1">Seu carrinho está vazio</div>
+        <div className="text-2xl">Seu carrinho está vazio</div>
         <div>
           <Link
             className="text-slate-500 flex items-center gap-2 mt-3 "
@@ -55,9 +55,9 @@ const CartClient = () => {
         <div className="text-sm flex flex-col gap-2 items-start">
           <div className="flex justify-between w-full text-base font-semibold">
             <span>Subtotal</span>
-            <span>R$120.00</span>
+            <span>R${cartTotalAmount.toFixed(2)}</span>
           </div>
-          <p className="text-slate-500">
+          <p className="text-slate-400">
             Taxas e frete serão calculados na finalização
           </p>
 
