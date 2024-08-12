@@ -7,7 +7,7 @@ import Button from "../components/Product/Button";
 import ProductContent from "./ProductContent";
 
 const CartClient = () => {
-  const { cartProductsItems } = useCart();
+  const { cartProductsItems, handleClearCart } = useCart();
 
   if (!cartProductsItems || cartProductsItems.length === 0) {
     return (
@@ -48,7 +48,7 @@ const CartClient = () => {
             small
             outline
             label="Limpar Carrinho"
-            onClick={() => console.log("click")}
+            onClick={() => handleClearCart()}
           />
         </div>
 

@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ProductContent: React.FC<Props> = ({ item }) => {
-  const { handleRemoveProductFromCart } = useCart();
+  const { handleRemoveProductFromCart, handleCartQuantityIncrease, handleCartQuantityDecrease } = useCart();
 
   return (
     <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-t-[1.5px] border-slate-200 py-4 items-center">
@@ -44,12 +44,12 @@ const ProductContent: React.FC<Props> = ({ item }) => {
         <SetQuantity
           cartCounter={true}
           cartProduct={item}
-          handleQuantityIncrease={() => {}}
-          handleQuantityDecrease={() => {}}
+          handleQuantityIncrease={() => handleCartQuantityIncrease(item)}
+          handleQuantityDecrease={() => handleCartQuantityDecrease(item)}
         />
       </div>
       <div className="justify-self-end font-semibold">
-       {formatPrice(item.price)}
+       {formatPrice(item.price * item.quantity) }
       </div>
     </div>
   );

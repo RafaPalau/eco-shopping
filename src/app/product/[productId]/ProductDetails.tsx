@@ -82,26 +82,25 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
   );
 
   const handleQuantityIncrease = useCallback(() => {
-    if (cardProduct.quantity >= 99) return;
+    if(cardProduct.quantity === 99) {
+      return
+    }
 
-    setCartProduct((prev) => {
-      return {
-        ...prev,
-        quantity: prev.quantity + 1,
-      };
+   setCartProduct((prev) => {
+      return { ...prev, quantity: ++prev.quantity };
     });
   }, [cardProduct]);
 
   const handleQuantityDecrease = useCallback(() => {
-    if (cardProduct.quantity === 0) return;
-
     setCartProduct((prev) => {
-      return {
-        ...prev,
-        quantity: prev.quantity - 1,
-      };
+      if (prev.quantity === 1) {
+        return prev; 
+      }
+  
+      return { ...prev, quantity: prev.quantity - 1 }; 
     });
-  }, [cardProduct]);
+  }, []);
+
 
   return (
     <div

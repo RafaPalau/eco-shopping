@@ -13,6 +13,9 @@ type CartContextType = {
   cartProductsItems: CartProduct[] | null;
   handleAddProductToCart: (product: CartProduct) => void;
   handleRemoveProductFromCart: (product: CartProduct) => void;
+  handleCartQuantityIncrease: (product: CartProduct) => void;
+  handleCartQuantityDecrease: (product: CartProduct) => void;
+  handleClearCart: () => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -72,11 +75,86 @@ export const CartContextProvider = (props: Props) => {
     [cartProductsItems]
   );
 
+  const handleCartQuantityIncrease = useCallback(
+    (product: CartProduct) => {
+      let updatedCartProducts;
+
+      if (product.quantity === 99) {
+        toast.error("Você adicionou o limite de quantidade permitido");
+      }
+
+      if (cartProductsItems) {
+        updatedCartProducts = [...cartProductsItems];
+
+        const existingIndex = cartProductsItems.findIndex(
+          (item) => item.id === product.id
+        );
+
+        if (existingIndex > -1) {
+          updatedCartProducts[existingIndex].quantity = ++updatedCartProducts[
+            existingIndex
+          ].quantity;
+        }
+
+        setCartProductsItems(updatedCartProducts);
+
+        localStorage.setItem(
+          "ecoShoppingCart",
+          JSON.stringify(updatedCartProducts)
+        );
+      }
+    },
+    [cartProductsItems]
+  );
+
+  const handleCartQuantityDecrease = useCallback(
+    (product: CartProduct) => {
+      if (product.quantity === 1) {
+        toast.error("Você não pode remover mais do que 1 item");
+        return;
+      }
+
+      let updatedCartProducts;
+
+      if (cartProductsItems) {
+        updatedCartProducts = [...cartProductsItems];
+
+        const existingIndex = cartProductsItems.findIndex(
+          (item) => item.id === product.id
+        );
+
+        if (existingIndex > -1) {
+          updatedCartProducts[existingIndex].quantity = --updatedCartProducts[
+            existingIndex
+          ].quantity;
+        }
+
+        setCartProductsItems(updatedCartProducts);
+
+        localStorage.setItem(
+          "ecoShoppingCart",
+          JSON.stringify(updatedCartProducts)
+        );
+      }
+    },
+    [cartProductsItems]
+  );
+
+  const handleClearCart = useCallback(() => {
+    setCartProductsItems(null);
+    setCartTotalQuantity(0);
+    localStorage.setItem("ecoShoppingCart", JSON.stringify(null));
+    toast.success("Seu carrinho está vazio");
+  }, []);
+
   const value = {
     cartTotalQuantity,
     cartProductsItems,
     handleAddProductToCart,
     handleRemoveProductFromCart,
+    handleCartQuantityIncrease,
+    handleCartQuantityDecrease,
+    handleClearCart,
   };
 
   return <CartContext.Provider value={value} {...props} />;
