@@ -1,7 +1,7 @@
 import { products } from "../../utils/products";
-import Banner from "./components/Banner/Banner";
+import Banner from "./components/banner/Banner";
 import Container from "./components/Container";
-import Product from "./components/Product/Product";
+import Product from "./components/product/Product";
 
 export default function Home() {
   return (

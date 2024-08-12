@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "../Container";
 
-import Logo from "../Logo/Logo";
+import Logo from "../logo/Logo";
 import CartCount from "./CartCount";
 
 const NavBar = () => {

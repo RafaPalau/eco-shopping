@@ -4,7 +4,7 @@ import { formatPrice } from "../../../utils/format";
 import Link from "next/link";
 import { truncate } from "lodash";
 import Image from "next/image";
-import SetQuantity from "../components/Product/SetQuantity";
+import SetQuantity from "../components/product/SetQuantity";
 import { useCart } from "../../../hooks/useCart";
 
 interface Props {

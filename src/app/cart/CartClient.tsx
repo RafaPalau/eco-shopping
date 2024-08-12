@@ -2,9 +2,10 @@
 import Link from "next/link";
 import { useCart } from "../../../hooks/useCart";
 import { MdArrowBack } from "react-icons/md";
-import Heading from "../components/Product/Heading";
-import Button from "../components/Product/Button";
+import Heading from "../components/product/Heading";
+import Button from "../components/product/Button";
 import ProductContent from "./ProductContent";
+
 
 const CartClient = () => {
   const { cartProductsItems, handleClearCart , cartTotalAmount} = useCart();
@@ -20,6 +21,8 @@ const CartClient = () => {
           >
             <MdArrowBack />
             <span>Continuar Comprando</span>
+         
+
           </Link>
         </div>
       </div>
