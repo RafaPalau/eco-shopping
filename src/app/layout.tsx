@@ -5,6 +5,7 @@ import NavBar from "./components/navigation/NavBar";
 import Footer from "./components/footer/Footer";
 import CartProvider from "../../providers/CartProvider";
 import { Toaster } from "react-hot-toast";
+import { getCurrentUser } from "../../actions/getCurrentUser";
 
 const raleway = Raleway({ subsets: ["latin"], weight: ["400", "600"] });
 
@@ -13,11 +14,15 @@ export const metadata: Metadata = {
   description: "Eco Shopping, a website for buying eco friendly products",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const currentUser = await getCurrentUser();
+  
+  
   return (
     <html lang="en">
       <body className={`${raleway.className}text-slate-600`}>
