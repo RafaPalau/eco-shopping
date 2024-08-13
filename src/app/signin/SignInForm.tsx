@@ -50,7 +50,7 @@ const SignInForm = () => {
         required
         errors={errors}
         register={register}
-        id="passowrd"
+        id="password"
         label="Senha"
         disabled={isLoading}
         type="password"

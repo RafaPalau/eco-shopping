@@ -7,6 +7,10 @@ import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import Button from "../components/product/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +26,34 @@ const SignUpForm = () => {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    console.log(data);
+
+    axios
+      .post("/api/signup", data)
+      .then((res) => {
+        toast.success("Cadastro efetuado com sucesso!");
+
+        signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false,
+        }).then((callback) => {
+          if (callback?.ok) {
+            router.push("/cart");
+            router.refresh();
+            toast.success("Login efetuado com sucesso!");
+          }
+
+          if (callback?.error) {
+            toast.error("Login falhou!");
+          }
+        });
+      })
+      .catch(() => toast.error("Algo deu errado!"))
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -60,7 +89,7 @@ const SignUpForm = () => {
         required
         errors={errors}
         register={register}
-        id="passowrd"
+        id="password"
         label="Senha"
         disabled={isLoading}
         type="password"
