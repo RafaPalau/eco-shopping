@@ -3,6 +3,7 @@ import Container from "../Container";
 
 import Logo from "../logo/Logo";
 import CartCount from "./CartCount";
+import UserMenu from "./UserMenu";
 
 const NavBar = () => {
   return (
@@ -26,7 +27,7 @@ const NavBar = () => {
             <div className="hidden md:block">Procurar</div>
             <div className="flex items-center gap-6">
               <CartCount />
-              <div>Perfil</div>
+             <UserMenu />
             </div>
           </div>
         </Container>
