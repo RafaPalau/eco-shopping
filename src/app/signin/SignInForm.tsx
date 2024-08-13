@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../components/inputs/Input";
 import Heading from "../components/product/Heading";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
@@ -10,8 +10,13 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { SafeUser } from "../../../types";
 
-const SignInForm = () => {
+interface Props {
+  currentUser: any | null;
+}
+
+const SignInForm: React.FC<Props> = ({ currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -25,6 +30,13 @@ const SignInForm = () => {
   });
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -46,6 +58,12 @@ const SignInForm = () => {
     });
   };
 
+  if (currentUser) {
+    return (
+      <p className="text-center">Você já está logado! Redirecionando...</p>
+    );
+  }
+
   return (
     <>
       <Heading title="Entrar no Eco Shopping" />
@@ -53,7 +71,9 @@ const SignInForm = () => {
         outline
         label="Entrar com Google"
         icon={AiOutlineGoogle}
-        onClick={() => console.log("Google")}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <hr className="bg-slate-400 w-full h-px" />
       <Input

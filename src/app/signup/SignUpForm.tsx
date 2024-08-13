@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../components/inputs/Input";
 import Heading from "../components/product/Heading";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
@@ -11,8 +11,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { SafeUser } from "../../../types";
 
-const SignUpForm = () => {
+interface Props {
+  currentUser: any | null;
+}
+
+const SignUpForm: React.FC<Props> = ({ currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -28,12 +33,19 @@ const SignUpForm = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  }, []);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
     axios
       .post("/api/signup", data)
-      .then((res) => {
+      .then(() => {
         toast.success("Cadastro efetuado com sucesso!");
 
         signIn("credentials", {
@@ -56,6 +68,12 @@ const SignUpForm = () => {
       .finally(() => setIsLoading(false));
   };
 
+  if (currentUser) {
+    return (
+      <p className="text-center">Você já está logado! Redirecionando...</p>
+    );
+  }
+
   return (
     <>
       <Heading title="Cadastrar no Eco Shopping" />
@@ -63,7 +81,9 @@ const SignUpForm = () => {
         outline
         label="Cadastrar com Google"
         icon={AiOutlineGoogle}
-        onClick={() => console.log("Google")}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <hr className="bg-slate-400 w-full h-px" />
       <Input

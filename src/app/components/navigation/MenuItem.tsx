@@ -1,9 +1,9 @@
 interface Props {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
-const MenuItem: React.FC<Props> = ({ children, onClick }: Props) => {
+const MenuItem: React.FC<Props> = ({ children, onClick }) => {
   return <div onClick={onClick} className="px-4 py-3 hover:bg-neutral-200 transition">
     {children}
   </div>;
