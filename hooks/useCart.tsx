@@ -17,6 +17,8 @@ type CartContextType = {
   handleCartQuantityIncrease: (product: CartProduct) => void;
   handleCartQuantityDecrease: (product: CartProduct) => void;
   handleClearCart: () => void;
+  paymentIntent: string | null;
+  handleSetPaymentIntent: (paymentIntent: string | null) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -31,12 +33,16 @@ export const CartContextProvider = (props: Props) => {
     CartProduct[] | null
   >(null);
   const [cartTotalAmount, setCartTotalAmount] = useState(0);
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("cartProductsItems");
     const cartProducts: CartProduct[] | null = JSON.parse(cartItems);
+    const ecoShoppingIntent: any = localStorage.getItem("ecoShoppingIntent");
+    const paymentIntent: string | null = JSON.parse(ecoShoppingIntent);
 
     setCartProductsItems(cartProducts);
+    setPaymentIntent(paymentIntent);
   }, []);
 
   useEffect(() => {
@@ -109,7 +115,7 @@ export const CartContextProvider = (props: Props) => {
 
       if (product.quantity === 99) {
         toast.error("Você adicionou o limite de quantidade permitido");
-        return
+        return;
       }
 
       if (cartProductsItems) {
@@ -176,6 +182,11 @@ export const CartContextProvider = (props: Props) => {
     toast.success("Seu carrinho está vazio");
   }, []);
 
+  const handleSetPaymentIntent = useCallback((paymentIntent: string | null) => {
+    setPaymentIntent(paymentIntent);
+    localStorage.setItem("ecoShoppingIntent", JSON.stringify(paymentIntent));
+  }, []);
+
   const value = {
     cartTotalQuantity,
     cartProductsItems,
@@ -185,6 +196,8 @@ export const CartContextProvider = (props: Props) => {
     handleCartQuantityIncrease,
     handleCartQuantityDecrease,
     handleClearCart,
+    paymentIntent,
+    handleSetPaymentIntent,
   };
 
   return <CartContext.Provider value={value} {...props} />;
