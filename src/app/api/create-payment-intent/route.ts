@@ -15,7 +15,9 @@ const calculateOrderAmount = (items: CartProduct[]) => {
     return acc + itemTotal;
   }, 0);
 
-  return totalPrice;
+  const price: any = Math.floor(totalPrice);
+
+  return price;
 };
 
 export async function POST(request: Request) {
@@ -34,7 +36,7 @@ export async function POST(request: Request) {
   const orderData = {
     user: { connect: { id: currentUser.id } },
     amount: total,
-    currency: "BRL",
+    currency: "brl",
     status: "pendente",
     deliveryStatus: "pendente",
     paymentIntentId: payment_intent_id,
@@ -79,7 +81,7 @@ export async function POST(request: Request) {
   } else {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
-      currency: "usd",
+      currency: "brl",
       automatic_payment_methods: { enabled: true },
     });
     orderData.paymentIntentId = paymentIntent.id;

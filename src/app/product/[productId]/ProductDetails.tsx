@@ -22,8 +22,6 @@ export type CartProduct = {
   description: string;
   category: string;
   brand: string;
-  inStock: boolean;
-  color: string;
   selectedImage: selectedImage;
   quantity: number;
   price: number;
@@ -45,8 +43,6 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     description: product.description,
     category: product.category,
     brand: product.brand,
-    inStock: product.inStock,
-    color: product.color,
     selectedImage: { ...product.images[0] },
     quantity: product.quantity,
     price: product.price,

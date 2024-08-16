@@ -36,7 +36,7 @@ export const CartContextProvider = (props: Props) => {
   const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
-    const cartItems: any = localStorage.getItem("cartProductsItems");
+    const cartItems: any = localStorage.getItem("ecoShoppingCart");
     const cartProducts: CartProduct[] | null = JSON.parse(cartItems);
     const ecoShoppingIntent: any = localStorage.getItem("ecoShoppingIntent");
     const paymentIntent: string | null = JSON.parse(ecoShoppingIntent);
@@ -83,7 +83,7 @@ export const CartContextProvider = (props: Props) => {
 
       toast.success("Produto adicionado ao carrinho");
       localStorage.setItem(
-        "cartProductsItems",
+        "ecoShoppingCart",
         JSON.stringify(updatedCartProducts)
       );
       return updatedCartProducts;
@@ -100,7 +100,7 @@ export const CartContextProvider = (props: Props) => {
         setCartProductsItems(filteredCartProducts);
         toast.success(`Produto ${product.name} removido do carrinho`);
         localStorage.setItem(
-          "cartProductsItems",
+          "ecoShoppingCart",
           JSON.stringify(filteredCartProducts)
         );
       }
