@@ -33,16 +33,14 @@ const ProductImage: React.FC<Props> = ({
             }
             `}
             >
-                {/* // não aparece a imagem aqui */}
               <>
-              <Image
-                src={image.image}
-                alt={image.color}
-                height={500}
-                width={500}
-                className="object-contain"
-              />
-              {console.log(image.image)}
+                <Image
+                  src={image.image}
+                  alt={image.color}
+                  height={500}
+                  width={500}
+                  className="object-contain"
+                />
               </>
             </div>
           );

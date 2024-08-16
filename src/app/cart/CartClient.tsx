@@ -5,10 +5,16 @@ import { MdArrowBack } from "react-icons/md";
 import Heading from "../components/product/Heading";
 import Button from "../components/product/Button";
 import ProductContent from "./ProductContent";
+import { SafeUser } from "../../../types";
+import { useRouter } from "next/navigation";
 
+interface Props {
+  currentUser: any
+}
 
-const CartClient = () => {
-  const { cartProductsItems, handleClearCart , cartTotalAmount} = useCart();
+const CartClient: React.FC<Props> = ({ currentUser }) => {
+  const { cartProductsItems, handleClearCart, cartTotalAmount } = useCart();
+  const router = useRouter();
 
   if (!cartProductsItems || cartProductsItems.length === 0) {
     return (
@@ -21,8 +27,6 @@ const CartClient = () => {
           >
             <MdArrowBack />
             <span>Continuar Comprando</span>
-         
-
           </Link>
         </div>
       </div>
@@ -65,8 +69,13 @@ const CartClient = () => {
           </p>
 
           <Button
-            label="Finalizar Compra"
-            onClick={() => console.log("click")}
+            label={
+              currentUser ? "Finalizar Compra" : "Logar para Finalizar Compra"
+            }
+            outline={currentUser ? false : true}
+            onClick={() =>
+              currentUser ? router.push("/checkout") : router.push("/signin")
+            }
           />
           <Link
             className="text-slate-500 flex items-center gap-2 mt-3"
