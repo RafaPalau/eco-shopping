@@ -42,7 +42,17 @@ export default async function handler(
       if (typeof charge.payment_intent === "string") {
         await prisma?.order.update({
           where: { paymentIntentId: charge.payment_intent },
-          data: { status: "complete", address: charge.shipping?.address },
+          data: {
+            status: "complete",
+            address: {
+              city: charge.shipping?.address?.city,
+              country: charge.shipping?.address?.country,
+              line1: charge.shipping?.address?.line1,
+              line2: charge.shipping?.address?.line2 || undefined,
+              zipCode: charge.shipping?.address?.postal_code,
+              state: charge.shipping?.address?.state,
+            },
+          },
         });
       }
 
