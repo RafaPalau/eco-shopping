@@ -34,7 +34,7 @@ const Product: React.FC<Props> = ({ data }: Props) => {
         <div>
           <Rating readOnly defaultValue={productRating(data)} />
         </div>
-        <div>{data.reviews?.length}Avaliações</div>
+        <div>{data.reviews?.length} Avaliações</div>
         <div>{formatPrice(data.price)}</div>
       </div>
     </div>

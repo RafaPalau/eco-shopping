@@ -115,7 +115,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
           <Rating readOnly defaultValue={productRating(product)} />
           <div>
             {product.reviews?.length}{" "}
-            {product.reviews?.length < 2 ? "avaliação" : "avaliações"}
+            {product.reviews?.length < 2 ? " avaliação" : "avaliações"}
           </div>
         </div>
         <hr className="border-slate-200 w-full" />

@@ -24,10 +24,9 @@ const Footer = () => {
             <Link href="#">Cuidados Pessoais</Link>
             <Link href="#">Moda Sustentável</Link>
             <Link href="#">Casa e Decoração</Link>
-            <Link href="#">Utensílios Domésticos</Link>
+            <Link href="#">Items Domésticos</Link>
             <Link href="#">Jardinagem e Horta</Link>
             <Link href="#">Limpeza Ecológica</Link>
-            <Link href="#">Crianças e Bebês</Link>
           </List>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3
