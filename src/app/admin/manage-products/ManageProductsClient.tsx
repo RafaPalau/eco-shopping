@@ -43,11 +43,11 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         );
       },
     },
-    { field: "category", headerName: "Categoria", width: 100 },
+    { field: "category", headerName: "Categoria", width: 120 },
     {
       field: "inStock",
       headerName: "Em Estoque",
-      width: 120,
+      width: 150,
       renderCell: (params: GridRenderCellParams<Product>) => {
         return (
           <div>
@@ -85,7 +85,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       <div className="mb-4 mt-8">
         <Heading title="Gerenciar Produtos" center />
       </div>
-      <div style={{ height: 600, width: "100%" }}>
+      <div style={{ height: 600, width: "100%", justifyItems: "center" }}>
         <DataGrid
           rows={rows}
           columns={columns}

@@ -18,6 +18,12 @@ const Status: React.FC<StatusProps> = ({
             ${color}
             px-1
             rounded flex items-center gap-1
+            h-6
+            w-fit
+            text-center
+            font-semibold
+            mt-3
+          
             `}
     >
       {text} <Icon size={15} />
