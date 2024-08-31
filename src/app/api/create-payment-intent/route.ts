@@ -24,10 +24,7 @@ export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.json(
-      { error: "Usuário não encontrado" },
-      { status: 401 }
-    );
+    return NextResponse.error();
   }
 
   const body = await request.json();
@@ -70,10 +67,7 @@ export async function POST(request: Request) {
       ]);
 
       if (!existing_order) {
-        return NextResponse.json(
-          { error: "Order não encontrado" },
-          { status: 400 }
-        );
+        return NextResponse.error();
       }
 
       return NextResponse.json({ paymentIntent: updated_intent });
@@ -84,6 +78,7 @@ export async function POST(request: Request) {
       currency: "brl",
       automatic_payment_methods: { enabled: true },
     });
+
     orderData.paymentIntentId = paymentIntent.id;
 
     await prisma.order.create({
@@ -92,4 +87,5 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ paymentIntent });
   }
+  return NextResponse.error();
 }

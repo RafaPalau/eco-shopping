@@ -21,7 +21,7 @@ interface IProps {
     | (SafeUser & {
         orders: Order[];
       })
-    | null;
+    | null
 }
 
 const AddRating: React.FC<IProps> = ({ product, user }) => {

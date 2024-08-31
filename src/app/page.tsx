@@ -1,5 +1,6 @@
+export const revalidate = 0;
+
 import getProducts from "../../actions/getProducts";
-import { products } from "../../utils/products";
 import Banner from "./components/banner/Banner";
 import Container from "./components/Container";
 import Product from "./components/product/Product";
