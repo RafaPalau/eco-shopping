@@ -9,11 +9,16 @@ import { getCurrentUser } from "../../../actions/getCurrentUser";
 const Order = async () => {
   const currentUser = await getCurrentUser();
 
- 
+  if (!currentUser) {
+    return (
+      <NullData title="Usuário não autenticado. Por favor, faça login para ver seus pedidos." />
+    );
+  }
 
-  const orders = await getOrdersByUserId(currentUser!.id);
+  const orders = await getOrdersByUserId(currentUser.id);
 
-  if (!orders) {
+
+   if (!orders || orders.length === 0) {
     return (
       <NullData title="Nenhum pedido encontrado para este usuário." />
     );
