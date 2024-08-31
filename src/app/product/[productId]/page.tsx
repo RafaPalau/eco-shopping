@@ -2,15 +2,16 @@ import Container from "@/app/components/Container";
 
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
-import { products } from "../../../../utils/products";
+import getProductById from "../../../../actions/getProductById";
 
 interface IParams {
   productId?: string;
 }
 
-const Product = ({ params }: { params: IParams }) => {
+const Product = async ({ params }: { params: IParams }) => {
+  const product = await getProductById(params);
 
-  const product = products.find((product) => product?.id === params.productId);
+  if (!product) return <div>Produto não encontrado</div>;
 
   return (
     <div className="p-8">

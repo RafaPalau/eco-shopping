@@ -44,7 +44,7 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
     category: product.category,
     brand: product.brand,
     selectedImage: { ...product.images[0] },
-    quantity: product.quantity,
+    quantity: product.quantity || 1,
     price: product.price,
   });
 
@@ -78,22 +78,22 @@ const ProductDetails: React.FC<IProduct> = ({ product }: IProduct) => {
   );
 
   const handleQuantityIncrease = useCallback(() => {
-    if(cardProduct.quantity === 99) {
-      return
+    if (cardProduct.quantity === 99) {
+      return; 
     }
 
-   setCartProduct((prev) => {
-      return { ...prev, quantity: ++prev.quantity };
+    setCartProduct((prev) => {
+      return { ...prev, quantity: prev.quantity + 1 };
     });
   }, [cardProduct]);
 
   const handleQuantityDecrease = useCallback(() => {
     setCartProduct((prev) => {
-      if (prev.quantity === 1) {
+      if (prev.quantity <= 1) {
         return prev; 
       }
-  
-      return { ...prev, quantity: prev.quantity - 1 }; 
+
+      return { ...prev, quantity: prev.quantity - 1 };
     });
   }, []);
 
