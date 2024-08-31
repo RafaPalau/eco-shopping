@@ -11,7 +11,7 @@ import {
 
 export const categories = [
   {
-    label: "All",
+    label: "Todos",
     icon: MdStorefront,
   },
   {
