@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "@types/lodash": "^4.17.7"
+    "@types/lodash": "^4.17.7",
+    "prisma": "^5.19.0"
   }
 }
