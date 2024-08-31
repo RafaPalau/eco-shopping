@@ -1,10 +1,11 @@
-import { User } from "@prisma/client";
+import { User } from "next-auth";
+
 
 export type SafeUser = Omit<
   User,
   "createdAt" | "updateAt" | "emailVerified"
 > & {
-  createdAt: string;
-  updateAt: string | null;
-  emailVerified: string | null;
+  createdAt: Date;
+  updatedAt: Date | null;
+  emailVerified: Date | null;
 };

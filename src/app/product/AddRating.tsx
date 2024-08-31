@@ -48,6 +48,7 @@ const AddRating: React.FC<IProps> = ({ product, user }) => {
       shouldValidate: true,
     });
   };
+
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     setIsLoading(true);
     if (data.rating === 0) {
@@ -64,7 +65,7 @@ const AddRating: React.FC<IProps> = ({ product, user }) => {
         route.refresh();
         reset();
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Erro ao enviar avaliação!");
       })
       .finally(() => {
@@ -74,16 +75,21 @@ const AddRating: React.FC<IProps> = ({ product, user }) => {
 
   if (!user || !product) return null;
 
-  const deliveredOrder = user?.orders.some(
+  const convertedUser = {
+    ...user,
+    createdAt: new Date(user.createdAt),
+    updateAt: user.updatedAt ? new Date(user.updatedAt) : null,
+    emailVerified: user.emailVerified ? new Date(user.emailVerified) : null,
+  };
+
+  const deliveredOrder = convertedUser.orders.some(
     (order) =>
-      order.products.find((item) => item.id === product.id) &&
+      order.products.find((item: any) => item.id === product.id) &&
       order.deliveryStatus === "complete"
   );
 
-  console.log(deliveredOrder, 'deliveredOrder')
-
   const userReview = product?.reviews.find((review: Review) => {
-    return review.userId === user.id;
+    return review.userId === convertedUser.id;
   });
 
   if (userReview || !deliveredOrder) return null;
@@ -96,7 +102,6 @@ const AddRating: React.FC<IProps> = ({ product, user }) => {
           setCustomValue("rating", newValue);
         }}
       />
-
       <Input
         id="comment"
         label="Comentário"
