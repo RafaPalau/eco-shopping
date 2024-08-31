@@ -18,7 +18,7 @@ interface IProps {
     reviews: Review[];
   };
   user:
-    | (SafeUser & {
+    | (any & {
         orders: Order[];
       })
     | null
@@ -83,7 +83,7 @@ const AddRating: React.FC<IProps> = ({ product, user }) => {
   };
 
   const deliveredOrder = convertedUser.orders.some(
-    (order) =>
+    (order: any) =>
       order.products.find((item: any) => item.id === product.id) &&
       order.deliveryStatus === "complete"
   );
