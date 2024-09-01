@@ -5,7 +5,7 @@ import Logo from "../logo/Logo";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "../../../../actions/getCurrentUser";
-import Categories from "./Categories";
+import CategoriesWrapper from "./Categories";
 
 const NavBar = async() => {
   const currentUser = getCurrentUser();
@@ -37,7 +37,7 @@ const NavBar = async() => {
           </div>
         </Container>
       </div>
-      <Categories />
+      <CategoriesWrapper />
     </nav>
   );
 };
