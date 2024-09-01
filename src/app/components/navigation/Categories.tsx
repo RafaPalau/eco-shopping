@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { categories } from "../../../../utils/Categories";
 import Container from "../Container";
@@ -13,7 +14,7 @@ const Categories = () => {
 
   const isMainPage = pathname === '/'
 
-  if(!isMainPage) return null
+  if (!isMainPage) return null;
 
   return (
     <div className="bg-white">
@@ -36,4 +37,11 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+
+export default function CategoriesWrapper() {
+  return (
+    <Suspense fallback={<div>Loading categories...</div>}>
+      <Categories />
+    </Suspense>
+  );
+}
