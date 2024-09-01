@@ -6,6 +6,7 @@ import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "../../../../actions/getCurrentUser";
 import CategoriesWrapper from "./Categories";
+import SearchBar from "./SearchBar";
 
 const NavBar = async() => {
   const currentUser = getCurrentUser();
@@ -28,7 +29,9 @@ const NavBar = async() => {
             <Link href="/">
               <Logo />
             </Link>
-            <div className="hidden md:block">Procurar</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-6">
               <CartCount />
              
