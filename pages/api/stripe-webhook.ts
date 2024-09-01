@@ -1,6 +1,7 @@
 import { buffer } from "micro";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import prisma from "../../libs/prismadb";
 
 export const config = {
   api: {
@@ -40,7 +41,7 @@ export default async function handler(
       const charge: any = event.data.object as Stripe.Charge;
 
       if (typeof charge.payment_intent === "string") {
-        await prisma?.order.update({
+        await prisma.order.update({
           where: { paymentIntentId: charge.payment_intent },
           data: {
             status: "complete",
